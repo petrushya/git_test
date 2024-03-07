@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="ru-RU">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+    	.mybody{
+    		max-inline-size: 800px;
+    		min-block-size: 100vh;
+    		margin: 0 auto;
+    		outline: thin solid green;
+    	}
+    	
+    	header{
+    		display: flex;
+    		justify-content: space-between;
+    		align-items: center;
+    		block-size: 3rem;
+    		outline: thin solid blue;
+    	}
+    	
+    	.menu-logo{
+    		outline: thin solid black;
+    	}
+    	
+    	.mobile-menu{
+    		display: none;
+    		align-self: flex-end;
+    	}
+    	
+    	#main-nav{
+    		align-self: flex-end;
+    		outline: thin solid red;
+    	}
+    	
+    	ol{
+    		list-style: none;
+    		margin: 0;
+    		padding: 0;
+    	}
+    	
+    	header a{
+    		display: block;
+    		text-decoration: none;
+    		padding: 0 0.25rem;
+    		background-color: #f2f2f2;
+    		font-size: 1.25rem;
+    		text-align: center;
+    		caret-color: transparent;
+    	}
+    	
+    	header li{
+    		padding-top: 0;
+    	}
+    	
+    	.main-cat{
+    		display: flex;
+    		column-gap: 0.25rem;
+    	}
+    	
+	  	.main-cat a{
+    		max-inline-size: calc(100vw / 7);
+	  		border-radius: 0.5rem;
+	  		padding: 0.125rem 1rem;
+	  	}
+		  	
+    	.allposts{
+    		display: none;
+    	}
+    	
+			@media screen and (max-width: 800px){
+
+				.mybody{
+	    		overflow-x: hidden;
+				}
+
+				header{
+			  	position: relative;
+			  	top: 0;
+			  	left: 0;
+				}
+				
+		  	#main-nav{
+		  		position: absolute;
+		  		top: 3rem;
+		  		right: 0;
+		  		max-inline-size: 75vw;
+		  		background-color: #fff;
+		  		padding: 0.25rem 0 0.25rem 0.25rem;
+		  		opacity: 0;
+		  		visibility: hidden;
+		  		transform: translatex(102%);
+		  		transition-duration: 0.75s;
+		  		transition-property: transform,opacity,visibility;
+		  	}
+		  	
+		  	.mobile-menu{
+		  		display: block;
+		  	}
+		  	
+		  	.main-cat{
+		  		flex-flow: column nowrap;
+		  		column-gap: unset;
+		  	}
+		  	
+		  	.main-cat a{
+	    		max-inline-size: 80vw;
+		  	}
+		  	
+		  	.main-cat li{
+		  		padding: 0.25rem 0;
+		  	}
+		  	
+		  	.allposts{
+		   		margin-left: 0.5rem;
+		  		display: flex;
+		  		flex-flow: column nowrap;
+		  		border-left: 4px solid brown;
+		   		outline: thin solid black;
+		  	}
+		  	
+		  	.allposts li{
+		  		padding: 0 0 0.25rem 0;
+		  	}
+		  	
+		  	.allposts a{
+					font-size: 1.025rem;
+		  	}
+		  	
+		  	.mobile-menu:is(:hover, :focus) + #main-nav, #main-nav:is(:hover, :focus-within){
+		  		transform:translatex(0);
+		  		opacity:1;
+		  		visibility: visible;
+		  	}
+
+			}
+    </style>
+	</head>
+	<body><div class="mybody">
+		<header>
+			<a class="menu-logo" href="#" title="about this site">Мой сайт</a>
+			<button class="mobile-menu" aria-labelledby="main-nav"><span class="symbol" contenteditable="false">&#x2261;</span></button>
+			<nav id="main-nav" aria-label = "Главное меню">
+				<ol class="main-cat">
+					<li class="menu-item"><a href="/" >Старт</a></li>
+					<li class="menu-item"><a href="/blog.html" class="postscat">Заметки</a></li>
+					<ol class="allposts">
+						<li class="menu-item"><a href="/training/2023/11/19/Specific-fonts.html">Спец&shy;шрифты</a></li>
+						<li class="menu-item"><a href="/training/2023/10/26/Universal-div.html">Универсальный <span lang="en">&lt;DIV&gt;</span></a></li>
+						<li class="menu-item"><a href="/2023/10/11/Experimental-post.html" aria-current="page" class="activePost">Пробный пост</a></li>
+					</ol>
+				</ol>
+			</nav>
+		</header>
+	</div></body>
+</html>

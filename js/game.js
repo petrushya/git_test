@@ -2,11 +2,6 @@
 // array for computer
 const computerArr = ["rock", "paper", "scissors"];
 
-// counters for the game
-
-let playerCount = 0;
-let compCount = 0;
-
 // selecting a random array element between the min and max values the way I liked it
 // computerRandom = Math.floor(min + Math.random() * (max - min + 1))
 
@@ -23,42 +18,25 @@ function getPlayerSelection(){
   }
 }
 
-// function describing one round with return of the score
+// function describing one round with return of the result
+
+let roundResult = "";
 
 function playRound(playerSelection, computerSelection){
-  playerCount = 0;
-  compCount = 0;
-  if(playerSelection === "rock"){
-    if(computerSelection === "scissors"){
-      console.log("You Won! Rock beats Scissors!");
-      return playerCount = 1;
-    }else if(computerSelection === "paper"){
-      console.log("You Lose! Paper beats Rock!");
-      return compCount = 1;
-    }else{
-      console.log("Round Draw!");
-    }
-  }else if (playerSelection === "scissors"){
-    if(computerSelection === "paper"){
-      console.log("You Lose! Scissors beats Paper!");
-      return playerCount = 1;
-    }else if(computerSelection === "rock"){
-      console.log("You Won! Rock beats Scissors!");
-      return compCount = 1;
-    }else{
-      console.log("Round Draw!!");
-    }
-  }else{
-    if(computerSelection === "rock"){
-      console.log("You Won! Paper beats Rock!");
-      return playerCount = 1;
-    }else if(computerSelection === "scissors"){
-      console.log("You Lose! Scissors beats Paper!");
-      return compCount = 1;
-    }else{
-      console.log("Round Draw!");
-    }
-  }
+	switch(`${playerSelection}-${computerSelection}`){
+		case 'rock-scissors':
+		case 'scissors-paper':
+		case 'paper-rock':
+      return roundResult = "playerWon";
+			break;
+		case 'rock-rock':
+		case 'paper-paper':
+		case 'scissors-scissors':
+			return roundResult = "";
+			break;
+		default:
+      return roundResult = "computerWon";
+	}
 }
 
 // main function for the game
@@ -69,19 +47,26 @@ function playGame(){
   for(let index = 0; index < 5; index++){
     const computerSelection = getComputerChoice();
     const playerSelection = getPlayerSelection();
+		const playerRoundWon = `You Won! ${playerSelection} beats ${computerSelection}`;
+		const computerRoundWon = `You Lose! ${computerSelection} beats ${playerSelection}`;
+		const roundDeadHeat = `Dead Heat! ${computerSelection} equals ${playerSelection}`;
     playRound(playerSelection, computerSelection);  
-    if(playerCount === 1){
-      playerCounter += playerCount;
-    }else if(compCount === 1){
-      compCounter += compCount;
+    if(roundResult === "playerWon"){
+    	console.log(playerRoundWon);
+      playerCounter += 1;
+    }else if(roundResult === "computerWon"){
+    	console.log(computerRoundWon);
+      compCounter += 1;
+    }else{
+    	console.log(roundDeadHeat);
     }
   }
   if(playerCounter > compCounter) {
-    console.log("You Won the Game! Game count: " + playerCounter + " - " + compCounter);
+    console.log(`You Won the Game! Game count: ${playerCounter} - ${compCounter}`);
   }else if(playerCounter < compCounter){
-    console.log("You Lose the Game! Game count: " + playerCounter + " - " + compCounter);
+    console.log(`You Lose the Game! Game count: ${playerCounter} - ${compCounter}`);
   }else{
-    console.log("Game Draw, Game count: " + playerCounter + " - " + compCounter);
+    console.log(`Dead Heat, Game count: ${playerCounter} - ${compCounter}`);
   }
 }
 

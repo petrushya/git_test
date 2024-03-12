@@ -7,7 +7,7 @@ const computerArr = ["rock", "paper", "scissors"];
 
 function getComputerChoice(){return computerArr[Math.floor(Math.random()*3)]}
 
-// check the user's prompt field entryand get the value
+// check the user's prompt field entry and get the value
 
 function getPlayerSelection(){
   let playerString = prompt("Please write your choice: rock, scissors or paper.");

@@ -16,7 +16,7 @@ function getComputerChoice(){return computerArr[Math.floor(Math.random()*3)]}
 
 function getPlayerSelection(){
   let playerString = prompt("Please write your choice: rock, scissors or paper.");
-  if(playerString && (playerString.toLowerCase() === "rock" || playerString.toLowerCase() === "paper" || playerString.toLowerCase() === "scissors")){
+  if(playerString && computerArr.includes(playerString.toLowerCase())){
     return playerString = playerString.toLowerCase();
   }else{
      getPlayerSelection();
@@ -77,11 +77,11 @@ function playGame(){
     }
   }
   if(playerCounter > compCounter) {
-    console.log("You Won the Game! Game count:", playerCounter, "-", compCounter);
+    console.log("You Won the Game! Game count: " + playerCounter + " - " + compCounter);
   }else if(playerCounter < compCounter){
-    console.log("You Lose the Game! Game count:", playerCounter, "-", compCounter);
+    console.log("You Lose the Game! Game count: " + playerCounter + " - " + compCounter);
   }else{
-    console.log("Game Draw, Game count:", playerCounter, "-", compCounter);
+    console.log("Game Draw, Game count: " + playerCounter + " - " + compCounter);
   }
 }
 

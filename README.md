@@ -1,4 +1,4 @@
 
 # rock-scissors-paper
 
-Creating a browser game
+Creating a browser game using javascript.

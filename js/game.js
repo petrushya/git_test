@@ -1,6 +1,6 @@
 
 // array for computer
-const computerArr = ["rock", "paper", "scissors"];
+const computerArr = ["rock", "scissors", "paper"];
 
 // selecting a random array element between the min and max values the way I liked it
 // computerRandom = Math.floor(min + Math.random() * (max - min + 1))

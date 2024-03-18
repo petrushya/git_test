@@ -49,6 +49,14 @@ playBlock.addEventListener('click', (event) => {
     default:
       para.textContent = `The round was a Draw! ${computerSelection.toUpperCase()} equals ${playerSelection.toUpperCase()}`;
   };
+  
+  if(playerCounter === 5 || compCounter === 5){
+    playerCounter === 5 ? para.innerHTML = `Game count: ${playerCounter} - ${compCounter}<br>You WON the Game!` : para.innerHTML = `Game count: ${playerCounter} - ${compCounter}<br>You LOSE the Game!`;
+    const selectButton = document.querySelectorAll('button.selectButton');
+    selectButton.forEach((item) => item.setAttribute('disabled',''));
+    playerCounter = 0;
+    compCounter = 0;
+  };
 });
 
 

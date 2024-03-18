@@ -2,9 +2,13 @@
 const playBlock = document.querySelector('#playGame');
 const playScore = document.querySelector('#playScore');
 const para = playScore.querySelector('p');
+const selectButton = document.querySelectorAll('button.selectButton');
+
+let playerCounter = 0;
+let compCounter = 0;
 
 const computerArr = ["rock", "paper", "scissors"];
-function getComputerChoice(){return computerArr[Math.floor(Math.random()*3)]}
+function getComputerChoice(){return computerArr[Math.floor(Math.random()*3)]};
 
 let roundResult = "";
 
@@ -24,9 +28,6 @@ function playRound(playSelect, compSelect){
       return roundResult = "computerWon";
   };
 };
-
-let playerCounter = 0;
-let compCounter = 0;
 
 playBlock.addEventListener('click', (event) => {
   let target = event.target;
@@ -52,10 +53,7 @@ playBlock.addEventListener('click', (event) => {
   
   if(playerCounter === 5 || compCounter === 5){
     playerCounter === 5 ? para.innerHTML = `Game count: ${playerCounter} - ${compCounter}<br>You WON the Game!` : para.innerHTML = `Game count: ${playerCounter} - ${compCounter}<br>You LOSE the Game!`;
-    const selectButton = document.querySelectorAll('button.selectButton');
     selectButton.forEach((item) => item.setAttribute('disabled',''));
-    playerCounter = 0;
-    compCounter = 0;
   };
 });
 

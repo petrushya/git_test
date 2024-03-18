@@ -33,10 +33,8 @@ playBlock.addEventListener('click', (event) => {
   let target = event.target;
   const playerSelection = target.id;
 
-  if(para.textContent !== '') para.textContent = '';
-
   const computerSelection = getComputerChoice();
-  if(computerArr.includes(playerSelection)) playRound(playerSelection, computerSelection);
+  playRound(playerSelection, computerSelection);
  
   switch(roundResult){
     case 'playerWon':
@@ -63,7 +61,7 @@ playBlock.addEventListener('click', (event) => {
     	selectButton.forEach((item) => item.removeAttribute('disabled'));
     	playerCounter = 0;
     	compCounter = 0;
-    	roundResult = '';
+    	para.textContent = '';
     	replayButton.remove();
     });
   };

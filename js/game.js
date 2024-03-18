@@ -22,7 +22,7 @@ function playRound(playSelect, compSelect){
     case 'rock-rock':
     case 'paper-paper':
     case 'scissors-scissors':
-      return roundResult = "";
+      return roundResult = "draw";
       break;
     default:
       return roundResult = "computerWon";
@@ -36,7 +36,7 @@ playBlock.addEventListener('click', (event) => {
   if(para.textContent !== '') para.textContent = '';
 
   const computerSelection = getComputerChoice();
-  playRound(playerSelection, computerSelection);
+  if(computerArr.includes(playerSelection)) playRound(playerSelection, computerSelection);
  
   switch(roundResult){
     case 'playerWon':
@@ -47,13 +47,25 @@ playBlock.addEventListener('click', (event) => {
       para.textContent = `You Lose the round! ${computerSelection.toUpperCase()} beats ${playerSelection.toUpperCase()}`;
       compCounter += 1;
       break;
-    default:
+    case 'draw':
       para.textContent = `The round was a Draw! ${computerSelection.toUpperCase()} equals ${playerSelection.toUpperCase()}`;
+      break
   };
   
   if(playerCounter === 5 || compCounter === 5){
     playerCounter === 5 ? para.innerHTML = `Game count: ${playerCounter} - ${compCounter}<br>You WON the Game!` : para.innerHTML = `Game count: ${playerCounter} - ${compCounter}<br>You LOSE the Game!`;
     selectButton.forEach((item) => item.setAttribute('disabled',''));
+
+    const replayButton = document.createElement('button');
+    replayButton.textContent = 'replay';
+    playScore.appendChild(replayButton);
+    replayButton.addEventListener('click', () => {
+    	selectButton.forEach((item) => item.removeAttribute('disabled'));
+    	playerCounter = 0;
+    	compCounter = 0;
+    	roundResult = '';
+    	replayButton.remove();
+    });
   };
 });
 
